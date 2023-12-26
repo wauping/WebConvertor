@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebConvertor.MainPage"
+             BackgroundColor="#DEDEDE">
+
+    <VerticalStackLayout>
+        <VerticalStackLayout.Resources>
+            <ResourceDictionary>
+                <x:Array x:Key="CurrencyList" Type="{x:Type x:String}">
+                    <x:String>AUD</x:String>
+                    <x:String>AZN</x:String>
+                    <x:String>GBP</x:String>
+                    <x:String>AMD</x:String>
+                    <x:String>BYN</x:String>
+                    <x:String>BGN</x:String>
+                    <x:String>BRL</x:String>
+                    <x:String>HUF</x:String>
+                    <x:String>VND</x:String>
+                    <x:String>HKD</x:String>
+                    <x:String>GEL</x:String>
+                    <x:String>DKK</x:String>
+                    <x:String>AED</x:String>
+                    <x:String>USD</x:String>
+                    <x:String>EUR</x:String>
+                    <x:String>EGP</x:String>
+                    <x:String>INR</x:String>
+                    <x:String>IDR</x:String>
+                    <x:String>KZT</x:String>
+                    <x:String>CAD</x:String>
+                    <x:String>QAR</x:String>
+                    <x:String>KGS</x:String>
+                    <x:String>CNY</x:String>
+                    <x:String>MDL</x:String>
+                    <x:String>NZD</x:String>
+                    <x:String>NOK</x:String>
+                    <x:String>PLN</x:String>
+                    <x:String>RON</x:String>
+                    <x:String>XDR</x:String>
+                    <x:String>SGD</x:String>
+                    <x:String>TJS</x:String>
+                    <x:String>THB</x:String>
+                    <x:String>TRY</x:String>
+                    <x:String>TMT</x:String>
+                    <x:String>UZS</x:String>
+                    <x:String>UAH</x:String>
+                    <x:String>CZK</x:String>
+                    <x:String>SEK</x:String>
+                    <x:String>CHF</x:String>
+                    <x:String>RSD</x:String>
+                    <x:String>ZAR</x:String>
+                    <x:String>KRW</x:String>
+                    <x:String>JPY</x:String>
+                </x:Array>
+            </ResourceDictionary>
+        </VerticalStackLayout.Resources>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label 
+                Grid.Column         = "2"
+                Grid.ColumnSpan     = "3"
+                Grid.Row            = "0"
+                TextColor           = "Black"
+                HorizontalOptions   = "Center"
+                FontSize="Header"
+                Margin              = "0,50,0,50"
+             >MONEY FOR NOTHING</Label>
+
+            <Entry 
+                x:Name                  = "EntryFrom"
+                Text                    = "100" 
+                
+                BackgroundColor         = "#263dbf"
+                TextColor               = "white"
+                FontSize                = "Small"
+                
+                VerticalTextAlignment   = "Center"
+                HorizontalTextAlignment = "Center"
+                
+                Grid.Column             = "2"
+                Grid.Row                = "2" 
+                
+                TextChanged="OnEntryFromValueChanged"
+             />
+
+            <Label
+                BackgroundColor         = "#BF2638" 
+                TextColor               = "White"
+                FontSize                = "Small"
+                HorizontalTextAlignment = "Center"
+                VerticalTextAlignment   = "Center"
+                
+                Grid.Column = "4" 
+                Grid.Row    = "2" 
+                
+                Text="{Binding ConvertedValue}"
+             />
+
+            <Picker 
+                x:Name                  = "PickerFrom" 
+                Title                   = "FromCurrency" 
+                TitleColor              = "Black"
+                BackgroundColor         = "#4126BF" 
+                Grid.Column             = "2" 
+                Grid.Row                = "3" 
+                SelectedIndexChanged    = "OnPickerFromSelectedIndexChanged"
+                
+                ItemsSource="{StaticResource CurrencyList}"
+             />
+
+            <Picker 
+                x:Name                  = "PickerTo"
+                Title                   = "ToCurrency"
+                TitleColor              = "Black"
+                BackgroundColor         = "#4126BF" 
+                Grid.Column             = "4"
+                Grid.Row                = "3"
+                SelectedIndexChanged    = "OnPickerToSelectedIndexChanged"
+                
+                ItemsSource="{StaticResource CurrencyList}"
+             />
+
+
+            <DatePicker
+                x:Name              = "DateSelector" 
+                HorizontalOptions   = "Center"
+                BackgroundColor     = "#39406A"
+                
+                Grid.Column         = "3" 
+                Grid.Row            = "1"
+             />
+
+            <Button
+                Clicked         = "OnGetExchangeRatesClicked"
+                
+                Margin          = "0,50,0,50"
+                BackgroundColor = "#26BF47"
+                Text            = "Get Exchange Rates" 
+                FontSize        = "Subtitle"
+                
+                Grid.Column     = "3" 
+                Grid.Row        = "5"
+             />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
