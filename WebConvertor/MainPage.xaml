@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:WebConvertor="clr-namespace:WebConvertor"
              x:Class="WebConvertor.MainPage"
+             x:DataType="WebConvertor:ViewModel"
              BackgroundColor="#DEDEDE">
 
     <VerticalStackLayout>
@@ -9,47 +11,21 @@
             <ResourceDictionary>
                 <x:Array x:Key="CurrencyList" Type="{x:Type x:String}">
                     <x:String>AUD</x:String>
-                    <x:String>AZN</x:String>
                     <x:String>GBP</x:String>
-                    <x:String>AMD</x:String>
-                    <x:String>BYN</x:String>
-                    <x:String>BGN</x:String>
-                    <x:String>BRL</x:String>
-                    <x:String>HUF</x:String>
-                    <x:String>VND</x:String>
-                    <x:String>HKD</x:String>
-                    <x:String>GEL</x:String>
+                    <x:String>BYR</x:String>
                     <x:String>DKK</x:String>
-                    <x:String>AED</x:String>
                     <x:String>USD</x:String>
                     <x:String>EUR</x:String>
-                    <x:String>EGP</x:String>
-                    <x:String>INR</x:String>
-                    <x:String>IDR</x:String>
+                    <x:String>ISK</x:String>
                     <x:String>KZT</x:String>
                     <x:String>CAD</x:String>
-                    <x:String>QAR</x:String>
-                    <x:String>KGS</x:String>
-                    <x:String>CNY</x:String>
-                    <x:String>MDL</x:String>
-                    <x:String>NZD</x:String>
                     <x:String>NOK</x:String>
-                    <x:String>PLN</x:String>
-                    <x:String>RON</x:String>
                     <x:String>XDR</x:String>
                     <x:String>SGD</x:String>
-                    <x:String>TJS</x:String>
-                    <x:String>THB</x:String>
-                    <x:String>TRY</x:String>
-                    <x:String>TMT</x:String>
-                    <x:String>UZS</x:String>
+                    <x:String>TRL</x:String>
                     <x:String>UAH</x:String>
-                    <x:String>CZK</x:String>
                     <x:String>SEK</x:String>
                     <x:String>CHF</x:String>
-                    <x:String>RSD</x:String>
-                    <x:String>ZAR</x:String>
-                    <x:String>KRW</x:String>
                     <x:String>JPY</x:String>
                 </x:Array>
             </ResourceDictionary>
@@ -89,8 +65,7 @@
 
             <Entry 
                 x:Name                  = "EntryFrom"
-                Text                    = "100" 
-                
+                                
                 BackgroundColor         = "#263dbf"
                 TextColor               = "white"
                 FontSize                = "Small"
@@ -101,7 +76,7 @@
                 Grid.Column             = "2"
                 Grid.Row                = "2" 
                 
-                TextChanged="OnEntryFromValueChanged"
+                Text="{Binding MEntryFrom}"
              />
 
             <Label
@@ -114,7 +89,7 @@
                 Grid.Column = "4" 
                 Grid.Row    = "2" 
                 
-                Text="{Binding ConvertedValue}"
+                Text="{Binding MConvertedValue}"
              />
 
             <Picker 
@@ -124,7 +99,7 @@
                 BackgroundColor         = "#4126BF" 
                 Grid.Column             = "2" 
                 Grid.Row                = "3" 
-                SelectedIndexChanged    = "OnPickerFromSelectedIndexChanged"
+                SelectedItem="{Binding MPickerFrom}"
                 
                 ItemsSource="{StaticResource CurrencyList}"
              />
@@ -136,32 +111,24 @@
                 BackgroundColor         = "#4126BF" 
                 Grid.Column             = "4"
                 Grid.Row                = "3"
-                SelectedIndexChanged    = "OnPickerToSelectedIndexChanged"
+                SelectedItem="{Binding MPickerTo}"
                 
                 ItemsSource="{StaticResource CurrencyList}"
              />
 
 
             <DatePicker
+                MinimumDate="01.01.2002"
                 x:Name              = "DateSelector" 
                 HorizontalOptions   = "Center"
                 BackgroundColor     = "#39406A"
                 
                 Grid.Column         = "3" 
                 Grid.Row            = "1"
+                
+                Date="{Binding MDatePicker}"
              />
 
-            <Button
-                Clicked         = "OnGetExchangeRatesClicked"
-                
-                Margin          = "0,50,0,50"
-                BackgroundColor = "#26BF47"
-                Text            = "Get Exchange Rates" 
-                FontSize        = "Subtitle"
-                
-                Grid.Column     = "3" 
-                Grid.Row        = "5"
-             />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

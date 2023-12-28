@@ -14,8 +14,16 @@ public class Parser
 
         XDocument doc = XDocument.Parse(xmlData);
 
+        IEnumerable<XElement> t1 = doc.Descendants("Valute").ToList();
+
+        var c = t1.FirstOrDefault(x => x.Element("CharCode").Value == charCode);
+
+
+
+        var v = c.Element("Value").Value;
+
         string selectedCurrency = (
-            from currency in doc.Descendants("Valute")
+            from currency in t1
             where currency.Element("CharCode").Value == charCode
             select currency.Element("Value").Value
         ).FirstOrDefault();
